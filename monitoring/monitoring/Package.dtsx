@@ -1,0 +1,1978 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/17/2018 10:04:02 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MARCELODJ"
+  DTS:CreatorName="MARCELODJ\tsa tsa"
+  DTS:DTSID="{663CCD2F-31AD-42D3-B5A5-0BF1DAB2D6EA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{397E79AA-397A-442A-B757-6E2B7E5368BF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[dest_data_serv_central]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{246068C8-E1F0-4EF5-9CAA-964E2F0BEEC9}"
+      DTS:ObjectName="dest_data_serv_central">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MARCELODJ;Initial Catalog=monitoring;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BD6F999E-4B7C-478A-9597-FF0292EC4D59}"
+      DTS:ObjectName="Source">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::dbName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::serverName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MARCELODJ\SERVER3;Initial Catalog=monitoring;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{984FD5F9-D277-4472-B17C-BFBBA9650E42}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="serverName">
+      <DTS:VariableValue
+        DTS:DataType="8">MARCELODJ\SERVER1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\agregation trenfert"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{94912A6F-4F76-4283-BEC2-A4C7E51FDDBB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="agregation trenfert"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\agregation trenfert\Destination agregation"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination agregation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[agregation_by_day]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\agregation trenfert\Destination agregation.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[dest_data_serv_central]"
+                  connectionManagerRefId="Package.ConnectionManagers[dest_data_serv_central]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[currentValue]"
+                      cachedDataType="numeric"
+                      cachedName="currentValue"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[currentValue]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[minimum]"
+                      cachedDataType="numeric"
+                      cachedName="minimum"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[minimum]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[maximum]"
+                      cachedDataType="numeric"
+                      cachedName="maximum"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[maximum]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[croissance]"
+                      cachedDataType="numeric"
+                      cachedName="croissance"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[croissance]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[volumePoint]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="volumePoint"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[volumePoint]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[tableRecort]"
+                      cachedDataType="i4"
+                      cachedName="tableRecort"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[tableRecort]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[unit]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="unit"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[unit]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="description"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[description]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[dbName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="dbName"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[serverName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="serverName"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[createDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="createDate"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]" />
+                    <inputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[isSync]"
+                      cachedDataType="i4"
+                      cachedName="isSync"
+                      externalMetadataColumnId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[agregationDiskId]"
+                      dataType="i4"
+                      name="agregationDiskId" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[metricsId]"
+                      dataType="i4"
+                      name="metricsId" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[currentValue]"
+                      dataType="numeric"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[minimum]"
+                      dataType="numeric"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[maximum]"
+                      dataType="numeric"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[croissance]"
+                      dataType="numeric"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="volumePoint" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[tableRecort]"
+                      dataType="i4"
+                      name="tableRecort" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\agregation trenfert\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\agregation trenfert\Source agregation"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source agregation"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec dbo.select_data_from_agregation</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\agregation trenfert\Source agregation.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[currentValue]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]"
+                      name="currentValue"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[minimum]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]"
+                      name="minimum"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[maximum]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]"
+                      name="maximum"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[croissance]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]"
+                      name="croissance"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[volumePoint]"
+                      length="50"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]"
+                      name="volumePoint"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[tableRecort]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]"
+                      name="tableRecort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[unit]"
+                      length="50"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]"
+                      name="unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[description]"
+                      length="1000"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      length="100"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      name="dbName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      length="100"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      name="serverName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      name="createDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      name="isSync"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[currentValue]"
+                      dataType="numeric"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[minimum]"
+                      dataType="numeric"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[maximum]"
+                      dataType="numeric"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[croissance]"
+                      dataType="numeric"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="volumePoint" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[tableRecort]"
+                      dataType="i4"
+                      name="tableRecort" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[currentValue]"
+                      dataType="numeric"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[currentValue]"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[minimum]"
+                      dataType="numeric"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[minimum]"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[maximum]"
+                      dataType="numeric"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[maximum]"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[croissance]"
+                      dataType="numeric"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[croissance]"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[volumePoint]"
+                      name="volumePoint" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[tableRecort]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[tableRecort]"
+                      name="tableRecort" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[unit]"
+                      name="unit" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      name="dbName" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      name="serverName" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      name="createDate" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      name="isSync" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\agregation trenfert\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\agregation trenfert.Paths[Sortie de source OLE DB]"
+              endId="Package\agregation trenfert\Destination agregation.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\agregation trenfert\Source agregation.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\express trensfert"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{3A8AD301-C728-4EA2-9A4B-2B691DBAB3B6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="express trensfert"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\express trensfert\Destination express"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination express"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[express]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\express trensfert\Destination express.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[dest_data_serv_central]"
+                  connectionManagerRefId="Package.ConnectionManagers[dest_data_serv_central]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[serverName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="serverName"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[serverName]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[dbName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="dbName"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[dbName]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[tableName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="tableName"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[tableName]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[tableName]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[no_recompute]"
+                      cachedDataType="bool"
+                      cachedName="no_recompute"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[no_recompute]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[no_recompute]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[is_incremental]"
+                      cachedDataType="bool"
+                      cachedName="is_incremental"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[is_incremental]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[is_incremental]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[data_compression_desc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="data_compression_desc"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[data_compression_desc]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[data_compression_desc]" />
+                    <inputColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].Columns[isSync]"
+                      cachedDataType="i4"
+                      cachedName="isSync"
+                      externalMetadataColumnId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[isSync]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[expressId]"
+                      dataType="i4"
+                      name="expressId" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[tableName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="tableName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[no_recompute]"
+                      dataType="bool"
+                      name="no_recompute" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[is_incremental]"
+                      dataType="bool"
+                      name="is_incremental" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[data_compression_desc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="data_compression_desc" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\express trensfert\Destination express.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\express trensfert\Destination express.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\express trensfert\Destination express.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\express trensfert\Destination express.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\express trensfert\Destination express.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\express trensfert\Source express"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source express"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.select_data_from_express</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\express trensfert\Source express.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      name="serverName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      name="dbName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[tableName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[tableName]"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[tableName]"
+                      name="tableName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[no_recompute]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[no_recompute]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[no_recompute]"
+                      name="no_recompute"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[is_incremental]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[is_incremental]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[is_incremental]"
+                      name="is_incremental"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[data_compression_desc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[data_compression_desc]"
+                      length="50"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[data_compression_desc]"
+                      name="data_compression_desc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      name="isSync"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[tableName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="tableName" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[no_recompute]"
+                      dataType="bool"
+                      name="no_recompute" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[is_incremental]"
+                      dataType="bool"
+                      name="is_incremental" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[data_compression_desc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="data_compression_desc" />
+                    <externalMetadataColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      name="serverName" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      name="dbName" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[tableName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[tableName]"
+                      name="tableName" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[no_recompute]"
+                      dataType="bool"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[no_recompute]"
+                      name="no_recompute" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[is_incremental]"
+                      dataType="bool"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[is_incremental]"
+                      name="is_incremental" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[data_compression_desc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[data_compression_desc]"
+                      name="data_compression_desc" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      name="isSync" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\express trensfert\Source express.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\express trensfert.Paths[Sortie de source OLE DB]"
+              endId="Package\express trensfert\Destination express.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\express trensfert\Source express.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\metrics trensfert"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{DBCD75E9-CBA3-4E99-884A-84474EFA61F9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="metrics trensfert"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\metrics trensfert\destination metrics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="destination metrics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[metrics]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\metrics trensfert\destination metrics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[dest_data_serv_central]"
+                  connectionManagerRefId="Package.ConnectionManagers[dest_data_serv_central]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[processId]"
+                      cachedDataType="i4"
+                      cachedName="processId"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[processId]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[value1]"
+                      cachedDataType="i4"
+                      cachedName="value1"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value1]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value1]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[value2]"
+                      cachedDataType="i4"
+                      cachedName="value2"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value2]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value2]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[value3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="value3"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value3]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value3]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[value4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="value4"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value4]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value4]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[unitMeasure]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="unitMeasure"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[unitMeasure]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[dbName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="dbName"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[serverName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="serverName"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[createDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="createDate"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]" />
+                    <inputColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].Columns[isSync]"
+                      cachedDataType="i4"
+                      cachedName="isSync"
+                      externalMetadataColumnId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[metricsId]"
+                      dataType="i4"
+                      name="metricsId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value1]"
+                      dataType="i4"
+                      name="value1" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value2]"
+                      dataType="i4"
+                      name="value2" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value3" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value4" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unitMeasure" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\metrics trensfert\destination metrics.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics trensfert\destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\metrics trensfert\source metrics"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="source metrics"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[metrics]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec select_data_from_metrics</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable">$Project::serverName</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\metrics trensfert\source metrics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      length="50"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      name="dbName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      length="100"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      name="serverName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      name="isSync"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      name="processId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value1]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value1]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value1]"
+                      name="value1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value2]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value2]"
+                      name="value2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value3]"
+                      length="1000"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value3]"
+                      name="value3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value4]"
+                      length="1000"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[value4]"
+                      name="value4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[unitMeasure]"
+                      length="50"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]"
+                      name="unitMeasure"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      name="createDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value1]"
+                      dataType="i4"
+                      name="value1" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value2]"
+                      dataType="i4"
+                      name="value2" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value3" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value4" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unitMeasure" />
+                    <externalMetadataColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      name="processId" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value1]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value1]"
+                      name="value1" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value2]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value2]"
+                      name="value2" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value3]"
+                      name="value3" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value4]"
+                      name="value4" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[unitMeasure]"
+                      name="unitMeasure" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      name="dbName" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      name="serverName" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      name="createDate" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      name="isSync" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\metrics trensfert\source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\metrics trensfert.Paths[Sortie de source OLE DB]"
+              endId="Package\metrics trensfert\destination metrics.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\metrics trensfert\source metrics.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{E218BC10-D9F1-420B-B06F-6EDDD919E402}"
+      DTS:From="Package\metrics trensfert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\express trensfert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6893356F-5F41-4D75-9EDB-DCD9516DD145}"
+      DTS:From="Package\express trensfert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\agregation trenfert" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\metrics trensfert"
+          TopLeft="300.722222222222,68.5277777777778" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\express trensfert"
+          TopLeft="531,70" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="457.722222222222,90.2638888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.277777777778,0"
+              Start="0,0"
+              End="65.777777777778,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="65.777777777778,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42"
+          Id="Package\agregation trenfert"
+          TopLeft="762,67" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="689,89.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73,0"
+              Start="0,0"
+              End="65.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="65.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\metrics trensfert">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\metrics trensfert\source metrics"
+          TopLeft="120,31" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\metrics trensfert\destination metrics"
+          TopLeft="152,165" />
+        <EdgeLayout
+          Id="Package\metrics trensfert.Paths[Sortie de source OLE DB]"
+          TopLeft="193.5,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.5,92"
+              Start="0,0"
+              End="42.5,84.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42"
+                    Point2="0,46"
+                    Point3="4,46" />
+                  <mssgle:LineSegment
+                    End="38.5,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.5,46"
+                    Point2="42.5,46"
+                    Point3="42.5,50" />
+                  <mssgle:LineSegment
+                    End="42.5,84.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\metrics trensfert\destination metrics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\metrics trensfert\source metrics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\express trensfert">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\express trensfert\Source express"
+          TopLeft="210,72" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\express trensfert\Destination express"
+          TopLeft="193,214" />
+        <EdgeLayout
+          Id="Package\express trensfert.Paths[Sortie de source OLE DB]"
+          TopLeft="281.75,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100"
+              Start="0,0"
+              End="0,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\express trensfert\Source express">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\express trensfert\Destination express">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\agregation trenfert">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\agregation trenfert\Destination agregation"
+          TopLeft="199,200" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\agregation trenfert\Source agregation"
+          TopLeft="204,43" />
+        <EdgeLayout
+          Id="Package\agregation trenfert.Paths[Sortie de source OLE DB]"
+          TopLeft="289,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,115"
+              Start="0,0"
+              End="0,107.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,107.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
