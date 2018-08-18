@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Additional fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+ <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <!-- For search and other icons ==> class fa fa-search -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- My own CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+
+
+    <!-- <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js" charset="utf-8"></script> -->
+    <!-- <script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script> -->
+
+
+
+    <!-- Select2 library to customize the select boxes  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <title>monitoring.com</title>
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <!-- J'ai pris la class de header sur le site web de bootstrap, elle permet de
+   pousser tout le reste vers le bas lorsque la largeur de l'écran diminue -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" id="logo" href="/">MONITORING<span class="dotcom">.com</span></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+
+             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form navbar-left" action="/search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher" name="search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-success" type="submit"> <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li><a href="/dashboard"> Dasboard</a></li>
+                <li><a href="" style="color:#4CAF50; font-weight:bold;font-size:18px;"> MARCELO DJ </a></li>
+            </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="mySidenav" class="sidenav">
+    <a class = "sidenavbutton" href="/" data-toggle='tooltip' data-placement="left" title="Accueil" id="home"><i class="fa fa-home" aria-hidden="true"></i></a>
+
+</div>
+    <!-- <div class="jumbotron"> -->
+      <div class="container">
+<hr>
+    <div class="PanelsContainer row text-center ">
+      <h1>Historiques des alertes de surveillance: <small>Bienvenue MARCELO DJ</small> </h1>
+      <hr>
+      </div>
+
+	  <!-- partie concernant l'historique debut -->
+
+      <div  id="historique" class="tabpanel col-sm-12  text-justify "> <!--jumbotron jumbotron-fluid-->
+          <table id="example" class="table table-striped" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+            <tr>
+               <th>process_value</th>
+               <th>warnning_value</th>
+               <th>emergency_Value</th>
+                <th>status</th>
+			         <th>date</th>
+            </tr>
+            <thead>
+
+            <tbody>
+                {% for r in res %}
+            <tr>
+              <td>{{r[0]}}</td>
+              <td>{{r[1]}}</td>
+              <td>{{r[2]}}</td>
+              <td>
+                {% if r[3]=='ok': %}
+                  <button class="btn btn-success pullright">{{r[3]}}</button>
+                {% else %}
+                  <button class="btn btn-danger pullright">{{r[3]}}</button>
+                {% endif %}
+              </td>
+              <td>{{r[4]}}</td>
+            </tr>
+            {% endfor %}
+            <tbody>
+
+            <tfoot>
+              <tr>
+                 <th>process_value</th>
+                 <th>warnning_value</th>
+                 <th>emergency_Value</th>
+                  <th>status</th>
+                 <th>date</th>
+              </tr>
+            </tfoot>
+          </table>
+      </div>  <!-- partie concernant l'historique fin -->
+
+<!-- partie concernant les rapports -->
+      <div class="col-sm-12 text-center tabpanel">
+        <div id='graph'>
+
+        </div>
+      </div>
+
+      <!-- <div class="col-sm-1">  </div> -->
+    </div>
+
+  <!--   </div> -->
+
+    <footer class="container-fluid text-center foot">
+    <h5 class="copyright">Copyright&copy; <span class="site-name">monitoring</span><span class="dotcom">.Com</span> Tous droits réservés</h5>
+    <div class="row">
+        <div class="col-sm-2">
+            <h5>plan du site</h5>
+            <ul class="list-unstyled">
+              <li> <a href="/home">Accueil</a></li>
+              <li> <a href="/dashboard">dashboard</a></li>
+              <li><a href="/historique"> Historiques</a></li>
+              <li> <a href="/contact">Contact</a></li>
+                <!-- <li> <a href="">Divers</a></li> -->
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <h5> Notre Mission </h5>
+            <p>Conception et implémentation d’un système de surveillance et d’alerte pour les serveurs Microsoft SQL</p>
+        </div>
+        <div class="col-sm-2">
+             <h5> Designed by </h5>
+            <a class="designer" href="https://mix92.github.io" target="_blank">MARCELO DJ</a>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
+ <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <!-- jQuery library -->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   -->
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <!-- Plotly.js -->
+    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+
+    <!-- CKEditor to customize text fields -->
+    <!-- <script type="text/javascript"> CKEDITOR.replace("refr") </script>
+    <script type="text/javascript"> CKEDITOR.replace("cpl") </script>
+    <script type="text/javascript"> CKEDITOR.replace("comm") </script> -->
+    <!-- <script type="text/javascript"> CKEDITOR.replace("contactmessage") </script> -->
+
+    <!-- Select2 library to customize the select boxes  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("#example").dataTable();
+        });
+    </script>
+
+    <script type="text/javascript" src="{{url_for('static',filename= 'myScripts.js')}}" charset="utf-8">  </script>
+     <script type="text/javascript">
+       var graphs = {"data": [{"type": "bar", "x": ["Jan", "FEB", "MAR", "APR", "MAY", "JUN"], "y": [10, 8, 12, 9, 10, 15], "name": "Nbre Partition"}], "layout": {"title": "historisation graphique du processus"}};
+       Plotly.plot('graph',graphs.data,graphs.layout || {})
+     </script>
+</body>
+
+</html>

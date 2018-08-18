@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Additional fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!-- For search and other icons ==> class fa fa-search -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- My own CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+
+
+    <!-- <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js" charset="utf-8"></script> -->
+    <!-- <script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script> -->
+
+	<script type="text/javascript" src="myScripts.js" charset="utf-8">  </script>
+
+    <!-- Select2 library to customize the select boxes  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <title>monitoring.com</title>
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <!-- J'ai pris la class de header sur le site web de bootstrap, elle permet de
+   pousser tout le reste vers le bas lorsque la largeur de l'écran diminue -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" id="logo" href="/">MONITORING<span class="dotcom">.com</span></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+
+             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form navbar-left" action="/search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher" name="search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-success" type="submit"> <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/dashboard"> Dasboard</a></li>
+                <li><a href="" style="color:#4CAF50; font-weight:bold;font-size:18px;"> MARCELO DJ </a></li>
+            </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="mySidenav" class="sidenav">
+    <a class = "sidenavbutton" href="/" data-toggle='tooltip' data-placement="left" title="Accueil" id="home"><i class="fa fa-home" aria-hidden="true"></i></a>
+
+</div>
+
+    <!-- <div class="jumbotron"> -->
+  <div class="container">
+  <hr>
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center"><em>je vous répond dès que possible</em></p>
+  <div class="row test">
+    <div class="col-md-4">
+      <p><span class="glyphicon glyphicon-map-marker"></span>Louvain-La-Neuve, Belguim</p>
+      <p><span class="glyphicon glyphicon-phone"></span>Phone: +32 (0) 465595446</p>
+      <p><span class="glyphicon glyphicon-envelope"></span>Email: marceltsameza@gmail.com</p>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--   </div> -->
+
+
+    <footer class="container-fluid text-center foot">
+    <h5 class="copyright">Copyright&copy; <span class="site-name">monitoring</span><span class="dotcom">.Com</span> Tous droits réservés</h5>
+    <div class="row">
+        <div class="col-sm-2">
+            <h5>plan du site</h5>
+            <ul class="list-unstyled">
+              <li> <a href="/">Accueil</a></li>
+              <li> <a href="/contact">Contact</a></li>
+              <li> <a href="/dashboard">dashboard</a></li>
+              <li><a href="/demo">Demo</a></li>
+                <!-- <li> <a href="">Divers</a></li> -->
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <h5> Notre Mission </h5>
+            <p>Conception et implémentation d’un système de surveillance et d’alerte pour les serveurs Microsoft SQL</p>
+        </div>
+        <div class="col-sm-2">
+             <h5> Designed by </h5>
+            <a class="designer" href="https://mix92.github.io" target="_blank">MARCELO DJ</a>
+        </div>
+</footer>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <!-- Plotly.js -->
+    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+
+    <!-- CKEditor to customize text fields -->
+    <!-- <script type="text/javascript"> CKEDITOR.replace("refr") </script>
+    <script type="text/javascript"> CKEDITOR.replace("cpl") </script>
+    <script type="text/javascript"> CKEDITOR.replace("comm") </script> -->
+    <!-- <script type="text/javascript"> CKEDITOR.replace("contactmessage") </script> -->
+
+    <!-- Select2 library to customize the select boxes  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                //placement : 'bottom'
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript" src="../static/JS/myScripts.js"> </script>
+    <script type="text/javascript">
+      var graphs = {"data": [{"type": "bar", "x": ["Jan", "FEB", "MAR", "APR", "MAY", "JUN"], "y": [10, 8, 12, 9, 10, 15], "name": "Nbre Partition"}], "layout": {"title": "Evolution du nombre de partition"}};
+      Plotly.plot('graph',graphs.data,graphs.layout || {})
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1465 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/29/2018 1:59:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MARCELODJ"
+  DTS:CreatorName="MARCELODJ\tsa tsa"
+  DTS:DTSID="{694DA224-F925-46D7-BE97-6BFE4293559B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{EBD148A2-9800-485C-80D6-942F3F5DEBCB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destination]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FA43CAE4-0CF0-4987-8803-80D5194B2C1E}"
+      DTS:ObjectName="destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MARCELODJ;Initial Catalog=monitoring;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[souce]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D5A185FE-4057-41C6-B12D-921830DAE668}"
+      DTS:ObjectName="souce">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MARCELODJ\SERVER1;Initial Catalog=monitoring;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\agregation deploy"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{97765DBF-6927-4B46-8BF9-C491A51B9954}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="agregation deploy"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\agregation deploy\Destination agregation"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination agregation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[agregation_by_day]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\agregation deploy\Destination agregation.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[destination]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[processId]"
+                      cachedDataType="i4"
+                      cachedName="processId"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[processId]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[currentValue]"
+                      cachedDataType="numeric"
+                      cachedName="currentValue"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[currentValue]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[minimum]"
+                      cachedDataType="numeric"
+                      cachedName="minimum"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[minimum]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[maximum]"
+                      cachedDataType="numeric"
+                      cachedName="maximum"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[maximum]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[croissance]"
+                      cachedDataType="numeric"
+                      cachedName="croissance"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[croissance]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[volumePoint]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="volumePoint"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[volumePoint]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[tableRecort]"
+                      cachedDataType="i4"
+                      cachedName="tableRecort"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[tableRecort]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[unit]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="unit"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[unit]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="description"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[description]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[dbName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="dbName"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[serverName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="serverName"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[createDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="createDate"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]" />
+                    <inputColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].Columns[isSync]"
+                      cachedDataType="i4"
+                      cachedName="isSync"
+                      externalMetadataColumnId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[agregationId]"
+                      dataType="i4"
+                      name="agregationId" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[currentValue]"
+                      dataType="numeric"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[minimum]"
+                      dataType="numeric"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[maximum]"
+                      dataType="numeric"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[croissance]"
+                      dataType="numeric"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="volumePoint" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[tableRecort]"
+                      dataType="i4"
+                      name="tableRecort" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\agregation deploy\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation deploy\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Destination agregation.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\agregation deploy\Source agregation"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source agregation"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.select_data_from_agregation</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\agregation deploy\Source agregation.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[souce]"
+                  connectionManagerRefId="Package.ConnectionManagers[souce]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      name="processId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[currentValue]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[currentValue]"
+                      name="currentValue"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[minimum]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[minimum]"
+                      name="minimum"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[maximum]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[maximum]"
+                      name="maximum"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[croissance]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[croissance]"
+                      name="croissance"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[volumePoint]"
+                      length="50"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[volumePoint]"
+                      name="volumePoint"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[tableRecort]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[tableRecort]"
+                      name="tableRecort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[unit]"
+                      length="50"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[unit]"
+                      name="unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[description]"
+                      length="1000"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      length="100"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      name="dbName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      length="100"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      name="serverName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      name="createDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      name="isSync"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[currentValue]"
+                      dataType="numeric"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[minimum]"
+                      dataType="numeric"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[maximum]"
+                      dataType="numeric"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[croissance]"
+                      dataType="numeric"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="volumePoint" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[tableRecort]"
+                      dataType="i4"
+                      name="tableRecort" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      name="processId" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[currentValue]"
+                      dataType="numeric"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[currentValue]"
+                      name="currentValue"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[minimum]"
+                      dataType="numeric"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[minimum]"
+                      name="minimum"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[maximum]"
+                      dataType="numeric"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[maximum]"
+                      name="maximum"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[croissance]"
+                      dataType="numeric"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[croissance]"
+                      name="croissance"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[volumePoint]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[volumePoint]"
+                      name="volumePoint" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[tableRecort]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[tableRecort]"
+                      name="tableRecort" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[unit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[unit]"
+                      name="unit" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      name="dbName" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      name="serverName" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      name="createDate" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      name="isSync" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\agregation deploy\Source agregation.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\agregation deploy.Paths[Sortie de source OLE DB]"
+              endId="Package\agregation deploy\Destination agregation.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\agregation deploy\Source agregation.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\metrics deploy"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{E589D038-A120-4901-A1C8-4155EBCEEE7D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="metrics deploy"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\metrics deploy\Destination metrics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination metrics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[metrics]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\metrics deploy\Destination metrics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[destination]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[processId]"
+                      cachedDataType="i4"
+                      cachedName="processId"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[processId]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[value1]"
+                      cachedDataType="i4"
+                      cachedName="value1"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value1]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value1]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[value2]"
+                      cachedDataType="i4"
+                      cachedName="value2"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value2]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value2]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[value3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="value3"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value3]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value3]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[value4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="value4"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value4]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value4]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[unitMeasure]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="unitMeasure"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[unitMeasure]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[dbName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="dbName"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[serverName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="serverName"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[createDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="createDate"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]" />
+                    <inputColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].Columns[isSync]"
+                      cachedDataType="i4"
+                      cachedName="isSync"
+                      externalMetadataColumnId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[metricsId]"
+                      dataType="i4"
+                      name="metricsId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value1]"
+                      dataType="i4"
+                      name="value1" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value2]"
+                      dataType="i4"
+                      name="value2" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value3" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value4" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unitMeasure" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\metrics deploy\Destination metrics.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics deploy\Destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Destination metrics.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\metrics deploy\Source metrics"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source metrics"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec select_data_from_metrics</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\metrics deploy\Source metrics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[souce]"
+                  connectionManagerRefId="Package.ConnectionManagers[souce]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[processId]"
+                      name="processId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value1]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value1]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value1]"
+                      name="value1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value2]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value2]"
+                      name="value2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value3]"
+                      length="1000"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value3]"
+                      name="value3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value4]"
+                      length="1000"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[value4]"
+                      name="value4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[unitMeasure]"
+                      length="50"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[unitMeasure]"
+                      name="unitMeasure"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      length="50"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[dbName]"
+                      name="dbName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      length="100"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[serverName]"
+                      name="serverName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[createDate]"
+                      name="createDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].Columns[isSync]"
+                      name="isSync"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[processId]"
+                      dataType="i4"
+                      name="processId" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value1]"
+                      dataType="i4"
+                      name="value1" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value2]"
+                      dataType="i4"
+                      name="value2" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value3" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="value4" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="unitMeasure" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="dbName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="serverName" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[createDate]"
+                      dataType="dbTimeStamp2"
+                      name="createDate" />
+                    <externalMetadataColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB].ExternalColumns[isSync]"
+                      dataType="i4"
+                      name="isSync" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[processId]"
+                      name="processId" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value1]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value1]"
+                      name="value1" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value2]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value2]"
+                      name="value2" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value3]"
+                      name="value3" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[value4]"
+                      name="value4" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[unitMeasure]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[unitMeasure]"
+                      name="unitMeasure" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[dbName]"
+                      name="dbName" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[serverName]"
+                      name="serverName" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[createDate]"
+                      name="createDate" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[isSync]"
+                      name="isSync" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\metrics deploy\Source metrics.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\metrics deploy.Paths[Sortie de source OLE DB]"
+              endId="Package\metrics deploy\Destination metrics.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\metrics deploy\Source metrics.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{67A6296C-9F90-47AB-8B13-14305293EE7D}"
+      DTS:From="Package\metrics deploy"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\agregation deploy" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\metrics deploy"
+          TopLeft="178,88" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\agregation deploy"
+          TopLeft="402,88" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="325,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,0"
+              Start="0,0"
+              End="69.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\metrics deploy">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\metrics deploy\Source metrics"
+          TopLeft="310,67" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\metrics deploy\Destination metrics"
+          TopLeft="309,184" />
+        <EdgeLayout
+          Id="Package\metrics deploy.Paths[Sortie de source OLE DB]"
+          TopLeft="384.5,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,75"
+              Start="0,0"
+              End="9,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="4,37.5" />
+                  <mssgle:LineSegment
+                    End="5,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,37.5"
+                    Point2="9,37.5"
+                    Point3="9,41.5" />
+                  <mssgle:LineSegment
+                    End="9,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\agregation deploy">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\agregation deploy\Source agregation"
+          TopLeft="291,51" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\agregation deploy\Destination agregation"
+          TopLeft="290,168" />
+        <EdgeLayout
+          Id="Package\agregation deploy.Paths[Sortie de source OLE DB]"
+          TopLeft="373.5,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,75"
+              Start="0,0"
+              End="9,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="4,37.5" />
+                  <mssgle:LineSegment
+                    End="5,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,37.5"
+                    Point2="9,37.5"
+                    Point3="9,41.5" />
+                  <mssgle:LineSegment
+                    End="9,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\metrics deploy\Source metrics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\metrics deploy\Destination metrics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\agregation deploy\Source agregation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\agregation deploy\Destination agregation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

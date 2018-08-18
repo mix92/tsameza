@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "monitoring", "monitoring\monitoring.dtproj", "{7FD666B9-6EA4-45AA-AFBF-2578250F2266}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FD666B9-6EA4-45AA-AFBF-2578250F2266}.Development|Default.ActiveCfg = Development
+		{7FD666B9-6EA4-45AA-AFBF-2578250F2266}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24C62301-4105-4C06-B296-C6727193634F}
+	EndGlobalSection
+EndGlobal

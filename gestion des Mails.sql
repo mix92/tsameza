@@ -11,6 +11,8 @@ RECONFIGURE
 GO
 
 
+
+
 -- Creation d'un profil mail  
 EXECUTE msdb.dbo.sysmail_add_profile_sp  
     @profile_name = 'marcelo DJ',  
@@ -32,10 +34,10 @@ EXECUTE msdb.dbo.sysmail_add_account_sp
     @email_address = 'marceltsameza@gmail.com',  
     @display_name = 'Automated Mailer',  
     @mailserver_name = 'smtp.gmail.com',
-    @port = 465,
+    @port = 587,
     @enable_ssl = 1,
     @username = 'marceltsameza@gmail.com',
-    @password = '***********' ;  
+    @password = 'cabrelle' ;  
 GO
 
 -- Ajouter le compte au profil  

@@ -1,0 +1,336 @@
+/* GENERAL */
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.container #empty{
+  height:20px;
+  width:100%;
+}
+.navbar{
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 1% 0;
+    border: 0;
+}
+
+header .logo{
+    font-family: 'Crete Round';
+    font-size: 35px;
+}
+
+#mySidenav{
+    position: fixed;
+    top: 80px;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+}
+
+/* #mySidenav{
+    position: absolute;
+    top: 80px;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+} */
+/* Style the links inside the sidenav */
+#mySidenav a {
+    position: fixed; /* Position them relative to the browser window */
+    right: -10px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 10px; /* 15px padding */
+    width: 50px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 10px 0px 0px 10px; /* Rounded corners on the top right and bottom right side */
+    z-index: 1000;
+}
+
+#mySidenav a:hover {
+    right: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#home {
+    top: 80px;
+    background-color: #4CAF50;
+}
+
+#allScores {
+    top: 140px;
+    background-color: #2196F3; /* Blue */
+}
+
+#searchScore {
+    top: 200px;
+    background-color: #f44336; /* Red */
+}
+
+#addScore {
+    top: 260px;
+    background-color: #ff7a00 /* Light Black */
+}
+
+#myCarousel{
+    position: relative;
+    z-index: -1;
+}
+
+.carousel-caption{
+    top: 30%;
+    transform: translateY(-20%);
+    font-weight: bold;
+    font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.carousel-caption h1{
+    color: #17a2b8;
+    font-size: 60px;
+}
+
+#myCarousel .glyphicon{
+    color: tomato;
+}
+
+.text-center h2{
+    margin: 25px auto;
+    font-family: 'Pacifico', cursive;
+}
+
+.text-center .site-name{
+    font-size: 50px;
+}
+
+#icon1, #icon2, #icon3{
+    font-size: 130px;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+#icon1{
+    background-color: #2196F3; /* Blue */
+}
+#icon2{
+    background-color: #f44336; /* Red */
+}
+#icon3{
+    background-color: #ff7a00 /* Light Black */
+}
+
+
+.body-middle .col-sm-4 h4 a{
+    text-decoration: none;
+    /* text-transform: uppercase; */
+    font-size: 25px;
+    font-family: 'Pacifico', cursive;
+    color: #222;
+    padding: 10px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    transition: 1s;
+}
+.body-middle .col-sm-4 a:hover{
+    font-size: 26px;
+    /* font-family: 'Roboto'; */
+    color: #4CAF50;
+    transform: scale(1.3);
+}
+
+.col-sm-4{
+    margin: 40px auto;
+}
+
+.body-middle .row .col-sm-4{
+  width: 30%;
+  margin: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 1s;
+}
+
+.body-middle .row .col-sm-4:hover{
+    border: ridge 1px;
+    box-shadow: #222 5px 5px 5px 1px;
+}
+
+/*  Page de recherche */
+.container .col-sm-8 div.preview {
+    margin: 5px;
+    border: 1px solid #ff7a00;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-transition: width 2s; /* Safari */
+    transition: 1s;
+}
+.container .col-sm-8 div.preview:hover {
+    border: 1px solid #f44336;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
+    background-color: #FFF;
+    transform: scale(1.3);
+}
+
+.scoretitleprev + .tooltip > .tooltip-inner {
+    background-color: #ff7a00; //#73AD21;
+    color: #FFFFFF;
+    border: 1px solid #ff7a00;
+    padding: 5px;
+    font-size: 15px;
+    width: 200px;
+}
+
+.sidenavbutton + .tooltip > .tooltip-inner {
+  background-color: #4B0082;
+  color: #FFFFFF;
+  font-weight: bold;
+  border: 1px solid #ff7a00;
+  padding: 5px;
+  font-size: 15px;
+  width: 150px;
+}
+
+
+@media only on screen and (max-width: 768px) {
+    .carousel-caption{
+        transform: scale(1);
+    }
+    .carousel-caption h1{
+        font-size: 16px;
+    }
+    .carousel-caption h3{
+        display: none;
+    }
+    #icon, .text-center .material-icons{
+    font-size: 75px;
+    }
+    .text-center h2, .text-center .site-name{
+        font-size: 130%;
+    }
+    .navbar-inverse .navbar-brand{
+        font-size: 30px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+.dotcom {
+    color: #ff7a00;
+    font-size: 15px;
+}
+
+footer {
+    width: 100%;
+    background-color: #222;
+    color: #eee;
+    padding: 3% auto;
+}
+
+.foot .col-sm-4 a{
+    text-decoration: none;
+    padding: 0;
+}
+
+.foot .list-unstyled a{
+    text-align: center;
+    font-family: "Crete round";
+    float: none;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.foot .designer{
+    font-weight: bold;
+    font-family: "Crete Round"
+}
+
+footer h5 {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color: #ff7a00;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 15px;
+}
+
+.foot .copyright, .foot .site-name {
+    color: white;
+    font-size: 20px;
+}
+.foot p{
+    font-family: 'Roboto';
+    font-size: 15px;
+    text-align: justify;
+}
+
+.foot .langues{
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+}
+
+form hr{
+  color: red;
+
+}
+
+/* Style dashboard panels */
+.container .PanelsContainer .tabpanel{
+  display: none;
+}
+
+/*debut formulaire*/
+#gauche{
+    width: 600px;
+    color: rgb(100, 0, 0);
+    float: left;
+  }
+  #droite{
+    width: 600px;
+    color: rgb(100, 0, 0);
+    float: right;
+  } /*fin*/
+
+/*debut historique et graph*/
+ #historique{
+    width: 500px;
+    float: left;
+
+  }
+  #graph{
+    width: 600px;
+    float: right;
+
+  } /*fin*/
+
+
+/* debut effet bouton*/
+@-webkit-keyframes ombre {
+  0% {box-shadow: 0 0 35px red;}
+  100% {box-shadow: 0 0 35px yellow;}
+}
+@-moz-keyframes ombre {
+  0% {box-shadow: 0 0 35px red;}
+  100% {box-shadow: 0 0 35px yellow;}
+}
+@keyframes ombre {
+  0% {box-shadow: 0 0 35px red;}
+  100% {box-shadow: 0 0 35px yellow;}
+}
+
+#rouge1, #rouge2{
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  /* Animation */
+ -webkit-animation: ombre ease-in infinite alternate 250ms;
+ -moz-animation: ombre ease-in infinite alternate 250ms;
+ animation: ombre ease-in infinite alternate 250ms;
+} /*fin*/
